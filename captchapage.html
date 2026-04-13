@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checking your browser | CloudOX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    :root{
+      /* GREEN THEME (changed only colors) */
+      --bg1: #1eff7a;
+      --bg2: #003f1a;
+      --bg3: #000805;
+      --accent1: rgba(60,255,140,0.15);
+      --accent2: rgba(0,0,0,0.9);
+    }
+
+    html,body{height:100%;}
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 20% 10%, var(--bg1), transparent 20%),
+                  radial-gradient(circle at 80% 80%, #00ff8833, transparent 15%),
+                  radial-gradient(circle at 50% 40%, #66ffcc33, transparent 10%),
+                  linear-gradient(180deg, #000805 0%, #001a10 100%);
+      background-size: 160% 160%, 120% 120%, 140% 140%, 100% 100%;
+      animation: bgShift 12s linear infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    @keyframes bgShift{
+      0%{background-position:0% 0%,0% 0%,0% 0%,0% 0%;}
+      50%{background-position:100% 50%,50% 100%,100% 0%,0% 0%;}
+      100%{background-position:0% 0%,0% 0%,0% 0%,0% 0%;}
+    }
+
+    .container {
+      width: min(420px, 92%);
+      max-width: 92%;
+      padding: 35px 30px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(60,255,140,0.18), rgba(0,0,0,0.78));
+      box-shadow: 0 12px 40px rgba(0,255,120,0.18), inset 0 0 25px rgba(255,255,255,0.03);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .logo {
+      width: 70px;
+      max-width: 32%;
+      height: auto;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+      color: #fff;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #bfffd5;
+      margin-bottom: 20px;
+      opacity: 0.95;
+    }
+
+    .captcha-box {
+      min-height: 96px;
+      padding: 18px;
+      border-radius: 14px;
+      background: linear-gradient(160deg, var(--accent1), var(--accent2));
+      border: 1px solid rgba(120,255,180,0.22);
+      box-shadow: inset 0 0 20px rgba(255,255,255,0.03), 0 8px 30px rgba(0,255,120,0.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .status {
+      position:absolute;
+      inset:auto auto 10px 0;
+      left:0; right:0;
+      text-align:center;
+      font-size:12px;
+      color:#c8ffe1;
+      opacity:0.95;
+    }
+
+    .verified {
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      color:#7dffb2;
+      font-weight:600;
+    }
+
+    .check {
+      width:22px;
+      height:22px;
+      color:#7dffb2;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #bfffe0;
+    }
+
+    .footer span { color: #eafff2 }
+
+    @media (max-width:640px){
+      .container{padding:22px 20px}
+      .logo{max-width:46%}
+      h1{font-size:20px}
+      .subtitle{font-size:13px}
+    }
+  </style>
+</head>
+
+<body>
+
+    <div class="container" role="region" aria-label="Security Verification">
+    <img src="https://cdn.phototourl.com/free/2026-04-13-984130fc-6656-4183-baf4-42ff5f9a2767.png" alt="SkilloraClouds Logo" class="logo">
+
+    <h1>Checking your browser</h1>
+    <p class="subtitle" id="subtitle">SkilloraClouds security verification in progress</p>
+
+    <!-- CAPTCHA BOX WITH LOADER -->
+    <div class="captcha-box" aria-live="polite">
+      <div class="ring" aria-hidden="true"></div>
+      <div id="loader" class="spinner" aria-hidden="true"></div>
+
+      <div id="verified" class="verified" style="display:none;">
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5"></path>
+        </svg>
+        <span id="verifiedText">You're verified</span>
+      </div>
+
+      <div class="status" id="statusText"></div>
+    </div>
+
+    <div class="footer">
+      DDoS protection by <span>Skill Guard</span>
+    </div>
+  </div>
+
+</body>
+</html>
